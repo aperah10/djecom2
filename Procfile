@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT abrah.wsgi:application
+web: gunicorn abrah.wsgi
