@@ -46,8 +46,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'abrah.urls'
-# # ! MY SETTINGS 
-AUTH_USER_MODEL='accounts.CustomUser'
+
 
 TEMPLATES = [
     {
@@ -124,7 +123,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-
+ # ---------------------------------------------------------------------------- #
+ #                                 ! MY SETTINGS                                #
+ # ---------------------------------------------------------------------------- #
+AUTH_USER_MODEL='accounts.CustomUser' 
+ # ---------------------------------------------------------------------------- #
+ #                              !DATABASE SETTINGS                              #
+ # ---------------------------------------------------------------------------- #
+import dj_database_url 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES ['default'].update(db_from_env)
 
 
 # # ---------------------------------------------------------------------------- #
