@@ -70,7 +70,7 @@ class PostRegister(APIView):
 
     def post(self, request, format=None):
         data = request.data
-        # if CustomUser.objects.filter(username__exact=data.get('username')):
+        # if CustomUser.objects.filter(phone__exact=data.get('phone')):
         #     return Response({"stateCode": 201, "msg": "User Exits"}, 201)
         # if CustomUser.objects.filter(email__exact=data.get('email')):
         #     return Response({"stateCode": 202, "msg": "User enn"}, 201)
@@ -129,6 +129,7 @@ def login(request):
 # nrw cart post for check 
 class PostCart(CreateAPIView):
     permission_classes=[IsAuthenticated] 
+    authentication_classes = [TokenAuthentication, ] 
 
     queryset = ProductInCart.objects.all()
     serializer_class=CartSer  
@@ -136,6 +137,7 @@ class PostCart(CreateAPIView):
 # NEW LIKE  post for check 
 class PostLike(CreateAPIView):
     permission_classes=[IsAuthenticated] 
+    authentication_classes = [TokenAuthentication, ] 
 
     queryset = Like.objects.all()
     serializer_class=LikeSer  
@@ -143,6 +145,7 @@ class PostLike(CreateAPIView):
 # NEW  NOTITFICATION  POST  FOR 
 class PostNoti(CreateAPIView):
     permission_classes=[IsAuthenticated] 
+    authentication_classes = [TokenAuthentication, ] 
 
     queryset = Notification.objects.all()
     serializer_class=NotificationSer   
@@ -183,9 +186,11 @@ class AllProduct(ListAPIView):
 # CART FOR USER 
 class GetCart(APIView):
     permission_classes=[IsAuthenticated] 
+    authentication_classes = [TokenAuthentication, ] 
 
     def get(self,request):
         usr= request.user 
+        print('GET Cart Request user', usr)
         usr_cart =ProductInCart.objects.filter(customer_cart=usr)
         
         try:
@@ -203,9 +208,11 @@ class GetCart(APIView):
 # LIKE OF USER 
 class GetLike(APIView):
     permission_classes=[IsAuthenticated] 
+    authentication_classes = [TokenAuthentication, ] 
 
     def get(self,request):
-        usr= request.user
+        usr= request.user 
+        print('GET LIKE Request user', usr)
         usr_like =Like.objects.filter(user=usr)
        
         try: 
@@ -223,6 +230,7 @@ class GetLike(APIView):
 # # MAKING NOTIFICATION 
 class GetNoti(APIView):
     permission_classes=[IsAuthenticated] 
+    authentication_classes = [TokenAuthentication, ] 
    
     def get(self,request):
         usr=request.user 
@@ -243,7 +251,7 @@ class GetNoti(APIView):
  #=========================DELETE ================= 
 class DeleteCart(APIView):
     permission_classes = [IsAuthenticated, ]
- 
+    authentication_classes = [TokenAuthentication, ] 
     def post(self,request):  
         prod=request.data['product'] 
         cus=request.data['customer_cart']
@@ -266,6 +274,7 @@ class DeleteCart(APIView):
    
 class DeleteLike(APIView):
     permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ] 
  
     def post(self,request):  
         prod=request.data['product'] 
@@ -289,6 +298,7 @@ class DeleteLike(APIView):
    
 class DeleteNoti(APIView):
     permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ] 
  
     def post(self,request):  
         prod=request.data['product'] 
