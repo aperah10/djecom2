@@ -153,13 +153,13 @@ class PostNoti(CreateAPIView):
 
  # ! PRODUCT SEARCH BAR 
 class SrchProduct(ListAPIView):
-    # queryset = Product.objects.all()
-    # serializer_class = AllProductSer 
-    # search_fields=['title', 'description']
-    queryset=CustomUser.objects.all()
-    serializer_class=AccountsSeri
+    queryset = Product.objects.all()
+    serializer_class = AllProductSer 
+    search_fields=['title', 'description']
+    # queryset=CustomUser.objects.all()
+    # serializer_class=AccountsSeri
     filter_backends=[DjangoFilterBackend,SearchFilter]
-    search_fields=['fullname', 'phone']
+    # search_fields=['fullname', 'phone']
 #     # ! this is used in Filter 
 #     # filter_backends = [DjangoFilterBackend]
 #     # filterset_fields = ['title', 'description']
