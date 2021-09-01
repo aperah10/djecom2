@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
     
     class Meta:
         model = CustomUser
-        fields = ('phone',)
+        fields = ('phone','email','fullname',)
 
 
 class CustomUserChangeForm(UserChangeForm):
